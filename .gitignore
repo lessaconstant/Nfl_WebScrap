@@ -1,0 +1,38 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+env/
+venv/
+ENV/
+*.env
+*.venv
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Log files
+*.log
+*.out
+*.err
+
+# Scrapy specific
+.nfl/
+.scrapy/
+*.sqlite
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE-specific
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Data files
+nfl_data/
+*.json
