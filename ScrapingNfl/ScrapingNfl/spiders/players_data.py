@@ -13,7 +13,7 @@ class NflSpider(scrapy.Spider):
         'all-purpose-yards', 'fumbles', 'scoring'
     ]
     
-    years = [2024]
+    years = [2024, 2023, 2022, 2021, 2020]
 
     # Mapeamento dos sorts por categoria
     category_sorts = {
@@ -84,7 +84,7 @@ class NflSpider(scrapy.Spider):
 
     def save_data(self, data, year, category):
         # Criar o diretório para os dados em 'nfl/data' se ainda não existir
-        base_dir = os.path.join(os.getcwd(), "..", "..", "data")  # Caminho relativo para o diretório 'nfl/data'
+        base_dir = os.path.join(os.getcwd(), "..", "data")  # Caminho relativo para o diretório 'nfl/data'
         year_dir = os.path.join(base_dir, str(year))
         os.makedirs(year_dir, exist_ok=True)
 
