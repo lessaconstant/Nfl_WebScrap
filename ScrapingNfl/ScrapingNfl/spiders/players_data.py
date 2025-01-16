@@ -15,23 +15,6 @@ class NflSpider(scrapy.Spider):
     
     years = [2024, 2023, 2022, 2021, 2020]
 
-    # Mapeamento dos sorts por categoria
-    category_sorts = {
-        'passing': ['passrate'],
-        'rushing': ['rushyds'],
-        'receiving': ['recnum'],
-        'kickoff-returns': ['kryds'],
-        'punt-returns': ['pryds'],
-        'defense': ['deftot'],
-        'punting': ['puntavg'],
-        'kicking': ['kickpts'],
-        'kickoff': ['koyds'],
-        'yards-from-scrimmage': ['scrimyds'],
-        'all-purpose-yards': ['apyds'],
-        'fumbles': ['fumnum'],
-        'scoring': ['totpts']
-    }
-
     # Mapeamento das colunas para cada categoria
     category_columns = {
         'passing': ['player', 'team', 'gms', 'att', 'cmp', 'pct', 'yds', 'ypa', 'td', 'td_pct', 'int', 'int_pct', 'lg', 'sack', 'loss', 'rate'],
@@ -53,10 +36,8 @@ class NflSpider(scrapy.Spider):
         # Gerar URLs para cada categoria e ano
         for year in self.years:
             for category in self.categories:
-                valid_sorts = self.category_sorts.get(category, [])
-                for sort in valid_sorts:
-                    url = f"https://www.footballdb.com/statistics/nfl/player-stats/{category}/{year}/regular-season?sort={sort}&limit=all"
-                    yield scrapy.Request(url, callback=self.parse, meta={'category': category, 'year': year, 'sort': sort})
+                url = f"https://www.footballdb.com/statistics/nfl/player-stats/{category}/{year}/regular-season"
+                yield scrapy.Request(url, callback=self.parse, meta={'category': category, 'year': year})
 
     def parse(self, response):
         category = response.meta['category']
@@ -67,13 +48,17 @@ class NflSpider(scrapy.Spider):
         
         data = []
         for row in rows:
+            print(row.get())
             player_data = {}
             for idx, column in enumerate(columns, start=1):
                 if column == 'player':
-                    player_data[column] = row.css(f'td:nth-child({idx}) a::text').get()
-                elif column == 'team':
-                    player_data[column] = row.css(f'td:nth-child({idx}) a::text').get()
+                    # Coletar o nome do jogador e o time na mesma célula
+                    player_name = row.css(f'td:nth-child({idx}) a::text').get()
+                    team = row.css(f'td:nth-child({idx}) span.statplayer-team::text').get()
+                    player_data['player'] = player_name
+                    player_data['team'] = team
                 else:
+                    # Coletar os outros dados normalmente
                     player_data[column] = row.css(f'td:nth-child({idx})::text').get()
 
             player_data['category'] = category
@@ -81,6 +66,7 @@ class NflSpider(scrapy.Spider):
             data.append(player_data)
         
         self.save_data(data, year, category)
+
 
     def save_data(self, data, year, category):
         # Criar o diretório para os dados em 'nfl/data' se ainda não existir
