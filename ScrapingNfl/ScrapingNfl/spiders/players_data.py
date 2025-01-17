@@ -6,16 +6,15 @@ class NflSpider(scrapy.Spider):
     name = "players_data"
     allowed_domains = ["footballdb.com"]
     
-    # Definindo as categorias e anos
+    # Categorias e ano
     categories = [
         'passing', 'rushing', 'receiving', 'kickoff-returns', 'punt-returns',
-        'defense', 'punting', 'kicking', 'kickoff', 'yards-from-scrimmage',
+        'defense', 'punting', 'kicking', 'kickoffs', 'yards-from-scrimmage',
         'all-purpose-yards', 'fumbles', 'scoring'
     ]
-    
     years = [2024, 2023, 2022, 2021, 2020]
 
-    # Mapeamento das colunas para cada categoria
+    # Colunas de cada tabela
     category_columns = {
         'passing': ['player', 'team', 'gms', 'att', 'cmp', 'pct', 'yds', 'ypa', 'td', 'td_pct', 'int', 'int_pct', 'lg', 'sack', 'loss', 'rate'],
         'rushing': ['player', 'team', 'gms', 'att', 'yds', 'avg', 'ypg', 'lg', 'td', 'fd'],
@@ -33,7 +32,7 @@ class NflSpider(scrapy.Spider):
     }
 
     def start_requests(self):
-        # Gerar URLs para cada categoria e ano
+        #Montando a URL
         for year in self.years:
             for category in self.categories:
                 url = f"https://www.footballdb.com/statistics/nfl/player-stats/{category}/{year}/regular-season"
@@ -42,23 +41,22 @@ class NflSpider(scrapy.Spider):
     def parse(self, response):
         category = response.meta['category']
         year = response.meta['year']
-        rows = response.css('tr:not(.header)')  # Ignora cabeçalhos da tabela
+        rows = response.css('tr:not(.header)')
 
         columns = self.category_columns.get(category, [])
         
         data = []
+        #Coleta dos dados
         for row in rows:
             print(row.get())
             player_data = {}
             for idx, column in enumerate(columns, start=1):
                 if column == 'player':
-                    # Coletar o nome do jogador e o time na mesma célula
                     player_name = row.css(f'td:nth-child({idx}) a::text').get()
                     team = row.css(f'td:nth-child({idx}) span.statplayer-team::text').get()
                     player_data['player'] = player_name
                     player_data['team'] = team
                 else:
-                    # Coletar os outros dados normalmente
                     player_data[column] = row.css(f'td:nth-child({idx})::text').get()
 
             player_data['category'] = category
@@ -67,14 +65,12 @@ class NflSpider(scrapy.Spider):
         
         self.save_data(data, year, category)
 
-
+    #Salvando os dados coletados no diretório nfl/data/players
     def save_data(self, data, year, category):
-        # Criar o diretório para os dados em 'nfl/data' se ainda não existir
-        base_dir = os.path.join(os.getcwd(), "..", "data")  # Caminho relativo para o diretório 'nfl/data'
+        base_dir = os.path.join(os.getcwd(), "..", "data", "Players")  
         year_dir = os.path.join(base_dir, str(year))
         os.makedirs(year_dir, exist_ok=True)
 
-        # Salvar os dados em um arquivo JSON
         file_path = os.path.join(year_dir, f"{category}.json")
         with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
