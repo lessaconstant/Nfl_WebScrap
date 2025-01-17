@@ -48,7 +48,6 @@ class NflSpider(scrapy.Spider):
         data = []
         #Coleta dos dados
         for row in rows:
-            print(row.get())
             player_data = {}
             for idx, column in enumerate(columns, start=1):
                 if column == 'player':
