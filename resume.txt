@@ -1,6 +1,0 @@
-PREVISOR DE JOGOS
-O projeto busca prever os resultados dos jogos da NFL utilizando dados históricos e machine learning.
-
-Etapa 01: WebScrapping
-site: https://www.footballdb.com/index.html
-

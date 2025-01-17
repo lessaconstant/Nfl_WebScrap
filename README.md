@@ -173,6 +173,10 @@ Clone o Repositório:
   
 
 2. Execute o Web Scraping:
+	Acesse o diretório:
+	
+
+	``cd ScrapingNfl``
 
   
 
