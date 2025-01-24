@@ -1,7 +1,11 @@
 
   
 
+  
+
 # NFL Predict
+
+  
 
   
 
@@ -13,7 +17,11 @@ NFL Predict é um projeto criado para prever dados e resultados de jogos da NFL 
 
   
 
+  
+
 ## Objetivo
+
+  
 
   
 
@@ -25,7 +33,11 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
+  
+
 ## Funcionalidades
+
+  
 
   
 
@@ -37,7 +49,11 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
+  
+
 - Processamento de Dados: Limpeza e organização dos dados coletados para facilitar análises.
+
+  
 
   
 
@@ -49,7 +65,11 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
+  
+
 ## Tecnologias Utilizadas
+
+  
 
   
 
@@ -61,7 +81,11 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
+  
+
 - Framework de Web Scraping: Scrapy
+
+  
 
   
 
@@ -73,7 +97,11 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
+  
+
 - Visualização de Dados: Matplotlib, Seaborn
+
+  
 
   
 
@@ -85,7 +113,11 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
+  
+
 - Gerenciamento de Versionamento: Git/GitHub
+
+  
 
   
 
@@ -97,7 +129,11 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
+  
+
 ``ScrapingNfl/ScrapingNfl/spiders/``: Scripts de web scraping para coleta de dados do site footballdb.com.
+
+  
 
   
 
@@ -109,11 +145,17 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
+  
+
 ``models/``: Scripts e modelos de machine learning para previsões (em desenvolvimento).
 
   
 
+  
+
 ## Como Usar
+
+  
 
   
 
@@ -125,7 +167,11 @@ Clone o Repositório:
 
   
 
+  
+
 ``git clone https://github.com/lessaconstant/nfl_predict.git``
+
+  
 
   
 
@@ -133,30 +179,54 @@ Clone o Repositório:
 
   
 
+  
+
 ## Crie um ambiente virtual (recomendado)
 
   
+
 ### Pelo bash:
-1. Crie o ambiente virtual: 
+
+1. Crie o ambiente virtual:
+
 ``python3 -m venv venv``
+
 2. Ative o ambiente:
+
 - Linux
+
 ``source venv/bin/activate``
- - Windows
+
+- Windows
+
 ``venv\Scripts\activate``
 
+  
+  
 
 ### Pelo pyenv:
+
 1. Instale o a versão do python:
- ``pyenv install 3.10.0``
+
+``pyenv install 3.10.0``
+
 ``pyenv local 3.10.0``
-3. Crie o ambiente virtual: 
+
+3. Crie o ambiente virtual:
+
 ``pyenv virtualenv 3.10.0 env``
+
 4. Ative o ambiente:
+
 - Linux
+
 ``pyenv activate env``
 
+  
+
 ## Instale as Dependências:
+
+  
 
   
 
@@ -166,28 +236,38 @@ Clone o Repositório:
 
   
 
-	``pip install -r requirements.txt``
+  
+
+``pip install -r requirements.txt``
+
+  
 
   
 
   
 
 2. Execute o Web Scraping:
-	Acesse o diretório:
-	
 
-	``cd ScrapingNfl``
+Acesse o diretório:
 
   
 
-	Inicie o processo de coleta de dados com:
+``cd ScrapingNfl``
 
   
 
   
 
-	``scrapy crawl players_data``
-	``scrapy crawl teams_data``
+Inicie o processo de coleta de dados com:
+
+  
+
+  
+
+  
+``python data_collect.py``
+
+  
 
   
 
@@ -197,7 +277,11 @@ Clone o Repositório:
 
   
 
-	(Em desenvolvimento).
+  
+
+(Em desenvolvimento).
+
+  
 
   
 
@@ -207,7 +291,11 @@ Clone o Repositório:
 
   
 
-	(Em desenvolvimento).
+  
+
+(Em desenvolvimento).
+
+  
 
   
 
@@ -219,7 +307,11 @@ Clone o Repositório:
 
   
 
+  
+
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests com melhorias, correções de bugs ou novas funcionalidades.
+
+  
 
   
 
@@ -231,13 +323,19 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar
 
   
 
+  
+
 Este projeto está licenciado sob a Licença MIT.
 
   
 
   
 
+  
+
 ## Contato
+
+  
 
   
 
