@@ -57,6 +57,7 @@ class NflSpider(scrapy.Spider):
                     player_data['team'] = team
                 else:
                     player_data[column] = row.css(f'td:nth-child({idx})::text').get()
+            print(player_data)
 
             player_data['category'] = category
             player_data['year'] = year
