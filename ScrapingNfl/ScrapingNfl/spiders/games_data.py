@@ -5,7 +5,7 @@ import json
 class NflSpider(scrapy.Spider):
     name = "games_data"
     allowed_domains = ["footballdb.com"]
-    years = [2024, 2023, 2022, 2021, 2020]
+    years = [year for year in range(2024, 2013, -1)]
 
 
     def start_requests(self):

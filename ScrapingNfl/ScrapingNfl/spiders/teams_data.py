@@ -11,7 +11,7 @@ class NflSpider(scrapy.Spider):
     categories = ["totals", "passing", "rushing", "kickoff-returns", 
              "punt-returns", "punting", "scoring", "downs"]
     
-    years = [2024, 2023, 2022, 2021, 2020]
+    years = [year for year in range(2024, 2013, -1)]
 
     positions = ["offense", "defense"]
 
