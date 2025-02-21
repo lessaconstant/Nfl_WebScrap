@@ -13,6 +13,9 @@ ENV/
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
 
+# Jupyter Notebooks
+.ipynb
+
 # Log files
 *.log
 *.out
