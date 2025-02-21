@@ -33,12 +33,12 @@ def run_spider(spider_name, description, test_url):
 if __name__ == "__main__":
     # URLs de teste correspondentes aos spiders
     test_urls = {
-        "games_data": "https://www.footballdb.com/games/index.html",
+        "scores_data": "https://www.footballdb.com/games/index.html",
         "players_data": "https://www.footballdb.com/statistics/nfl/player-stats/passing",
         "teams_data": "https://www.footballdb.com/statistics/nfl/team-stats/offense-totals"
     }
 
-    run_spider("games_data", "🔹 Coletando dados dos jogos...", test_urls["games_data"])
+    run_spider("scores_data", "🔹 Coletando dados dos jogos...", test_urls["scores_data"])
     run_spider("players_data", "🔹 Coletando dados dos jogadores...", test_urls["players_data"])
     run_spider("teams_data", "🔹 Coletando dados dos times...", test_urls["teams_data"])
 

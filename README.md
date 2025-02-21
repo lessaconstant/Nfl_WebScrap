@@ -1,21 +1,9 @@
 
-  
+# NFL Scraping
 
   
 
-# NFL Predict
-
-  
-
-  
-
-  
-
-NFL Predict é um projeto criado para prever dados e resultados de jogos da NFL com base em estatísticas históricas de jogadores, times e partidas anteriores (até o ano de 2020). Este projeto utiliza um pipeline de análise de dados que começa com a coleta de informações diretamente do site footballdb.com por meio de técnicas de web scraping.
-
-  
-
-  
+NFL Scraping é um projeto criado para coletar dados do site footballdb.com usando técnicas de web scraping com o framework Scrapy.
 
   
 
@@ -23,15 +11,7 @@ NFL Predict é um projeto criado para prever dados e resultados de jogos da NFL 
 
   
 
-  
-
-  
-
-O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogos da NFL, auxiliando analistas, fãs ou apostadores com informações detalhadas e estatísticas confiáveis.
-
-  
-
-  
+O principal objetivo do NFL Scraping é extrair informações detalhadas de jogos, jogadores e estatísticas da NFL diretamente do footballdb.com para posterior análise e processamento.
 
   
 
@@ -39,31 +19,9 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
-  
+-  **Coleta de Dados:** Utiliza o Scrapy para extrair informações de jogos, estatísticas de jogadores (por exemplo, passing, rushing, fumbles) e dados de times.
 
-  
-
-- Coleta de Dados: Utiliza web scraping para extrair informações detalhadas de jogadores e equipes, categorizando-as em estatísticas como passes, corridas, recepções, defesas e mais.
-
-  
-
-  
-
-  
-
-- Processamento de Dados: Limpeza e organização dos dados coletados para facilitar análises.
-
-  
-
-  
-
-  
-
-- Análise e Previsão: Aplicação de modelos estatísticos e de machine learning para prever resultados de jogos futuros.
-
-  
-
-  
+-  **Processamento de Dados:** Organiza e salva os dados extraídos em arquivos JSON para uso em análises futuras e desenvolvimento de algoritmos de ML.
 
   
 
@@ -71,55 +29,11 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
-  
+-  **Linguagem de Programação:** Python
 
-  
+-  **Framework de Web Scraping:** Scrapy
 
-- Linguagem de Programação: Python
-
-  
-
-  
-
-  
-
-- Framework de Web Scraping: Scrapy
-
-  
-
-  
-
-  
-
-- Bibliotecas de Análise de Dados: Pandas, NumPy
-
-  
-
-  
-
-  
-
-- Visualização de Dados: Matplotlib, Seaborn
-
-  
-
-  
-
-  
-
-- Modelos de Machine Learning: Scikit-learn, TensorFlow (em desenvolvimento)
-
-  
-
-  
-
-  
-
-- Gerenciamento de Versionamento: Git/GitHub
-
-  
-
-  
+-  **Gerenciamento de Versionamento:** Git/GitHub
 
   
 
@@ -127,29 +41,11 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
-  
-
-  
-
 ``ScrapingNfl/ScrapingNfl/spiders/``: Scripts de web scraping para coleta de dados do site footballdb.com.
 
   
 
-  
-
-  
-
-``data/``: Diretório onde os dados extraídos e processados são armazenados.
-
-  
-
-  
-
-  
-
-``models/``: Scripts e modelos de machine learning para previsões (em desenvolvimento).
-
-  
+``data/``: Diretório onde os dados extraídos são armazenados.
 
   
 
@@ -157,188 +53,71 @@ O principal objetivo do NFL Predict é fornecer insights e previsões sobre jogo
 
   
 
-  
+### Clone o Repositório
 
-  
+```git clone [https://github.com/lessaconstant/Nfl_WebScrap.git](https://github.com/lessaconstant/ScrapingNfl.git)```
 
-Clone o Repositório:
+``cd Nfl_WebScrap``
 
-  
 
-  
+### Crie um Ambiente Virtual (recomendado)
 
-  
-
-``git clone https://github.com/lessaconstant/nfl_predict.git``
-
-  
-
-  
-
-``cd nfl_predict``
-
-  
-
-  
-
-## Crie um ambiente virtual (recomendado)
-
-  
-
-### Pelo bash:
-
+#### Pelo bash:
 1. Crie o ambiente virtual:
-
 ``python3 -m venv venv``
-
 2. Ative o ambiente:
-
-- Linux
-
+- **Linux:**
 ``source venv/bin/activate``
-
-- Windows
-
+- **Windows:**
 ``venv\Scripts\activate``
 
-  
-  
-
-### Pelo pyenv:
-
-1. Instale o a versão do python:
-
+#### Pelo pyenv:
+1. Instale a versão do Python:
 ``pyenv install 3.10.0``
-
-``pyenv local 3.10.0``
-
-3. Crie o ambiente virtual:
-
+2. Crie o ambiente virtual:
 ``pyenv virtualenv 3.10.0 env``
-
-4. Ative o ambiente:
-
-- Linux
-
+3. Ative o ambiente:
 ``pyenv activate env``
 
-  
+### Instale as Dependências
 
-## Instale as Dependências:
-
-  
-
-  
-
-1. Certifique-se de ter o Python 3.10+ instalado e execute:
-
-  
-
-  
-
-  
+Certifique-se de ter o Python 3.10+ instalado e execute:
 
 ``pip install -r requirements.txt``
 
-  
+### Execute o Web Scraping
 
-  
+Existem 3 spiders disponíveis:
+``players_data.py`` - Spider para coleta dados dos jogadores separados por ano, categoria e temporada.
+``scores_data.py`` - Spider para coleta dados dos jogos separados por ano e semana.
+``teams_data.py`` - Spider para coleta dados dos times separados por ano, temporada e posição (Ataque e Defesa).
+ Estes scripts coletam dados de 2014 até 2024 e pode ser alterado modificando a variável `years`
+ 
+ Para estes 3 spiders, existe um script python para chama-los seguidamente, basta executar este comando no root:
+ ``python3 data_collect.py``
 
-  
 
-2. Execute o Web Scraping:
+Além destes 3 spiders, existe mais um que fara a coleta dos dados de um jogador ao longo de uma temporada específica, trata-se do spider ``player_per_temp.py``.  Atualmente, este script funciona apenas para QuarterBacks, coletando os dados de **passing**, **rushing** e **fumbles** destes. Para configura-lo, precisa alterar as variáveis ``player``, ``team`` (O time precisa ser em sigla) e ``year``.
+Exemplo:
+``player = "Baker Mayfield"``
+``team = "TB"``
+``year = "2024"``
 
-Acesse o diretório:
 
-  
+Todos os dados retornados serão Jsons e ficaram armazenados no diretório ``data/``.
 
-``cd ScrapingNfl``
+## Aviso de Propriedade dos Dados 
+Todos os dados coletados pertencem ao domínio footballdb.com. Este projeto utiliza técnicas de web scraping apenas para fins de estudo e análise, respeitando os termos de uso do site.
 
-  
-
-  
-
-Inicie o processo de coleta de dados com:
-
-  
-
-  
-
-  
-``python data_collect.py``
-
-  
-
-  
-
-  
-
-3. Analise os Dados:
-
-  
-
-  
-
-(Em desenvolvimento).
-
-  
-
-  
-
-  
-
-4. Execute Previsões:
-
-  
-
-  
-
-(Em desenvolvimento).
-
-  
-
-  
-
-  
 
 ## Contribuições
 
-  
-
-  
-
-  
-
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests com melhorias, correções de bugs ou novas funcionalidades.
-
-  
-
-  
-
-  
 
 ## Licença
 
-  
-
-  
-
-  
-
 Este projeto está licenciado sob a Licença MIT.
 
-  
-
-  
-
-  
-
 ## Contato
-
-  
-
-  
-
-  
 
 Para dúvidas ou sugestões, entre em contato pelo GitHub ou envie um e-mail para lessaconstant@gmail.com.
