@@ -88,19 +88,28 @@ Certifique-se de ter o Python 3.10+ instalado e execute:
 ### Execute o Web Scraping
 
 Existem 3 spiders disponíveis:
+
 ``players_data.py`` - Spider para coleta dados dos jogadores separados por ano, categoria e temporada.
+
 ``scores_data.py`` - Spider para coleta dados dos jogos separados por ano e semana.
+
 ``teams_data.py`` - Spider para coleta dados dos times separados por ano, temporada e posição (Ataque e Defesa).
+
  Estes scripts coletam dados de 2014 até 2024 e pode ser alterado modificando a variável `years`
  
  Para estes 3 spiders, existe um script python para chama-los seguidamente, basta executar este comando no root:
+ 
  ``python3 data_collect.py``
 
 
 Além destes 3 spiders, existe mais um que fara a coleta dos dados de um jogador ao longo de uma temporada específica, trata-se do spider ``player_per_temp.py``.  Atualmente, este script funciona apenas para QuarterBacks, coletando os dados de **passing**, **rushing** e **fumbles** destes. Para configura-lo, precisa alterar as variáveis ``player``, ``team`` (O time precisa ser em sigla) e ``year``.
+
 Exemplo:
+
 ``player = "Baker Mayfield"``
+
 ``team = "TB"``
+
 ``year = "2024"``
 
 
